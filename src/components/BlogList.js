@@ -68,7 +68,7 @@ const enhanceBlogList = withObservables(['search'], ({database, search}) => ({
 }));
 
 export const BlogList = enhanceBlogList(({blogs}) => {
-  console.log('blogList');
+  console.log('blogList-screen');
   const navigation = useNavigation();
   return (
     <View>
@@ -77,7 +77,6 @@ export const BlogList = enhanceBlogList(({blogs}) => {
           blog={blog}
           key={blog.id}
           onPress={() => {
-            console.log({blog});
             return navigation.navigate('Blog', {blogId: blog.id});
           }}
         />
