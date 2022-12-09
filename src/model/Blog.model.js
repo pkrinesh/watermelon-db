@@ -15,6 +15,9 @@ export class Blog extends Model {
   posts;
 
   @lazy
+  getPosts = this.collections.get('posts').query(Q.where('blog_id', this.id));
+
+  @lazy
   nastyComments = this.collections
     .get('comments')
     .query(Q.on('posts', 'blog_id', this.id), Q.where('is_nasty', true));

@@ -1,6 +1,5 @@
 import React from 'react';
 import 'react-native-gesture-handler';
-import {NativeModules} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Root from './src/components/Root';
@@ -11,8 +10,6 @@ import ModerationQueue from './src/components/ModerationQueue';
 const Stack = createNativeStackNavigator();
 
 const App = () => {
-  // const appStartedLaunchingAt =
-  //   NativeModules.PerformancePlugin.appInitTimestamp;
   const [timeToLaunch] = React.useState(new Date().getTime() - 0);
 
   return (

@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from 'react';
+import React, {Fragment} from 'react';
 import {
   ScrollView,
   SafeAreaView,
@@ -11,9 +11,7 @@ import {
 
 import Button from './helpers/Button';
 import styles from './helpers/styles';
-import BlogList from './BlogList';
-
-import {Database} from '@nozbe/watermelondb';
+import BlogList from './with-hooks/BlogList';
 
 import logoSrc from './assets/logo-app.png';
 import {generate100, generate10k} from '../model/generate';
@@ -76,7 +74,7 @@ const Root = ({
           <BlogList
             database={database}
             search={search}
-            navigation={navigation}
+            // navigation={navigation}
           />
         )}
       </SafeAreaView>
