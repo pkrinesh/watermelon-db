@@ -15,15 +15,13 @@ import BlogList from './BlogList';
 import logoSrc from './assets/logo-app.png';
 import {generate100, generate10k} from '../model/generate';
 import {database} from '../../index';
+import {useRoute} from '@react-navigation/native';
 
-const Root = ({
-  navigation,
-  route: {
-    params: {timeToLaunch},
-  },
-}) => {
-  const [isGenerating, setIsGenerating] = React.useState(false);
+export default function Root() {
+  const routeParams = useRoute()?.params;
+
   const [search, setSearch] = React.useState('');
+  const [isGenerating, setIsGenerating] = React.useState(false);
   const [isSearchFocused, setIsSearchFocused] = React.useState(false);
 
   const generateWith = async generator => {
@@ -51,7 +49,9 @@ const Root = ({
         {!isSearchFocused && (
           <Fragment>
             <Image style={styles.logo} source={logoSrc} />
-            <Text style={styles.post}>Launch time: {timeToLaunch} ms</Text>
+            <Text style={styles.post}>
+              Launch time: {routeParams?.timeToLaunch} ms
+            </Text>
             <View style={styles.marginContainer}>
               <Text style={styles.header}>Generate:</Text>
               <View style={styles.buttonContainer}>
@@ -69,16 +69,8 @@ const Root = ({
           onBlur={handleOnBlur}
           onChangeText={handleTextChanges}
         />
-        {!isGenerating && (
-          <BlogList
-            database={database}
-            search={search}
-            // navigation={navigation}
-          />
-        )}
+        {!isGenerating && <BlogList database={database} search={search} />}
       </SafeAreaView>
     </ScrollView>
   );
-};
-
-export default Root;
+}
